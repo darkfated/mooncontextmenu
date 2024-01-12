@@ -1,3 +1,5 @@
+// Конфиг сделан под ШколуРП. Но можете запроста изменить под DarkRP
+
 MoonContextMenu.config_cmds = {
     {
         items = {
@@ -17,7 +19,7 @@ MoonContextMenu.config_cmds = {
             }
         },
         check = function()
-            return table.HasValue(DarkFated.admins_rank, LocalPlayer():GetUserGroup())
+            return LocalPlayer():getJobTable().command == 'job_admin'
         end
     },
     {

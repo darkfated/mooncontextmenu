@@ -1,6 +1,8 @@
 local scrw, scrh = ScrW(), ScrH()
 
 local function Create()
+    MoonContextMenuScrollPos = MoonContextMenuScrollPos or 0
+
     MoonContextMenu.menu = vgui.Create('DFrame')
     Mantle.ui.frame(MoonContextMenu.menu, '', 300, 500, false)
 
@@ -62,6 +64,8 @@ local function Create()
             draw.RoundedBox(4, 0, 0, w, h, Mantle.color.panel_alpha[2])
         end
     end
+
+    MoonContextMenu.menu.sp:GetVBar():AnimateTo(MoonContextMenuScrollPos, 0, 0)
 end
 
 local function Close()
@@ -69,6 +73,7 @@ local function Close()
         return
     end
 
+    MoonContextMenuScrollPos = MoonContextMenu.menu.sp:GetVBar():GetScroll()
     MoonContextMenu.pos_save = {}
     MoonContextMenu.pos_save[1], MoonContextMenu.pos_save[2] = MoonContextMenu.menu:GetPos()
     MoonContextMenu.menu:Remove()

@@ -2,7 +2,7 @@
     * MoonContextmenu *
     GitHub: https://github.com/darkfated/mooncontextmenu
     Author's discord: darkfated
-]]
+]]--
 
 local function run_scripts()
 	Mantle.run_cl('config.lua')

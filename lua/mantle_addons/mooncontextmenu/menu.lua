@@ -6,13 +6,11 @@ local function Create()
     MoonContextMenu.menu = vgui.Create('DFrame', g_ContextMenu)
     Mantle.ui.frame(MoonContextMenu.menu, '', 300, 500, false)
 
-    if MoonContextMenu.pos_save then
-        MoonContextMenu.menu:SetPos(MoonContextMenu.pos_save[1], MoonContextMenu.pos_save[2])
-    else
-        MoonContextMenu.menu:SetPos(10, 0)
-        MoonContextMenu.menu:CenterVertical()
+    if !MoonContextMenu.pos_save then
+        MoonContextMenu.pos_save = {10, scrh * 0.5 - MoonContextMenu.menu:GetTall() * 0.5}
     end
 
+    MoonContextMenu.menu:SetPos(MoonContextMenu.pos_save[1], MoonContextMenu.pos_save[2])
     MoonContextMenu.menu:SetMouseInputEnabled(true)
     MoonContextMenu.menu.center_title = 'Список команд'
 
@@ -74,7 +72,7 @@ local function Close()
     end
 
     MoonContextMenuScrollPos = MoonContextMenu.menu.sp:GetVBar():GetScroll()
-    MoonContextMenu.pos_save = {}
+
     MoonContextMenu.pos_save[1], MoonContextMenu.pos_save[2] = MoonContextMenu.menu:GetPos()
     MoonContextMenu.menu:Remove()
 end

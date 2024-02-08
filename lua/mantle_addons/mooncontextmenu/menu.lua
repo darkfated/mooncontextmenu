@@ -3,7 +3,7 @@ local scrw, scrh = ScrW(), ScrH()
 local function Create()
     MoonContextMenuScrollPos = MoonContextMenuScrollPos or 0
 
-    MoonContextMenu.menu = vgui.Create('DFrame')
+    MoonContextMenu.menu = vgui.Create('DFrame', g_ContextMenu)
     Mantle.ui.frame(MoonContextMenu.menu, '', 300, 500, false)
 
     if MoonContextMenu.pos_save then
@@ -13,7 +13,7 @@ local function Create()
         MoonContextMenu.menu:CenterVertical()
     end
 
-    MoonContextMenu.menu:MakePopup()
+    MoonContextMenu.menu:SetMouseInputEnabled(true)
     MoonContextMenu.menu.center_title = 'Список команд'
 
     MoonContextMenu.menu.sp = vgui.Create('DScrollPanel', MoonContextMenu.menu)

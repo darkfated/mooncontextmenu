@@ -12,3 +12,6 @@ ContextMenu for Interaction in Garry's Mod
 
 ### And of course to reset the position using the left mouse button
 <img src="https://github.com/darkfated/mooncontextmenu/assets/49955245/b426a516-e8f8-480b-ae5e-920fd072c8cb" width="300" alt="Reset Btn">
+
+### There is an animation menu on the right
+<img src="https://github.com/darkfated/mooncontextmenu/assets/49955245/42c12fa5-97ed-4499-abf2-15258f2d3956" width="200" alt="Animation menu">

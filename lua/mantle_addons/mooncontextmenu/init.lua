@@ -13,14 +13,7 @@ end
 
 local function init()
 	if SERVER then
-		local folderPath = 'materials/mooncontextmenu'
-		local files = file.Find(folderPath .. '/*.png', 'GAME')
-
-		for _, fileName in ipairs(files) do
-			local filePath = folderPath .. '/' .. fileName
-
-			resource.AddFile(filePath)
-		end
+		resource.AddWorkshop('3162225713')
 	end
 
 	MoonContextMenu = MoonContextMenu or {}

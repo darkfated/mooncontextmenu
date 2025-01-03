@@ -1,21 +1,21 @@
-local scrw, scrh = ScrW(), ScrH()
-
 local function Create()
     MoonContextMenuScrollPos = MoonContextMenuScrollPos or 0
 
-    MoonContextMenu.menu = vgui.Create('DFrame', g_ContextMenu)
-    Mantle.ui.frame(MoonContextMenu.menu, '', 300, 500, false)
+    MoonContextMenu.menu = vgui.Create('MantleFrame', g_ContextMenu)
+    MoonContextMenu.menu:SetSize(300, 500)
+    MoonContextMenu.menu:SetTitle('')
+    MoonContextMenu.menu:DisableCloseBtn()
+    MoonContextMenu.menu:SetAlphaBackground(true)
 
     if !MoonContextMenu.pos_save then
-        MoonContextMenu.pos_save = {10, scrh * 0.5 - MoonContextMenu.menu:GetTall() * 0.5}
+        MoonContextMenu.pos_save = {10, Mantle.func.sh * 0.5 - MoonContextMenu.menu:GetTall() * 0.5}
     end
 
     MoonContextMenu.menu:SetPos(MoonContextMenu.pos_save[1], MoonContextMenu.pos_save[2])
     MoonContextMenu.menu:SetMouseInputEnabled(true)
-    MoonContextMenu.menu.center_title = 'Список команд'
+    MoonContextMenu.menu:SetCenterTitle('Список команд')
 
-    MoonContextMenu.menu.sp = vgui.Create('DScrollPanel', MoonContextMenu.menu)
-    Mantle.ui.sp(MoonContextMenu.menu.sp)
+    MoonContextMenu.menu.sp = vgui.Create('MantleScrollPanel', MoonContextMenu.menu)
     MoonContextMenu.menu.sp:Dock(FILL)
 
     for _, cat in ipairs(MoonContextMenu.config_cmds) do
@@ -24,18 +24,17 @@ local function Create()
         end
 
         for _, cmd in ipairs(cat.items) do
-            local btn_cmd = vgui.Create('DButton', MoonContextMenu.menu.sp)
-            Mantle.ui.btn(btn_cmd)
-            btn_cmd:Dock(TOP)
-            btn_cmd:DockMargin(0, 0, 0, 4)
-            btn_cmd:SetTall(24)
-            btn_cmd:SetText(cmd.name)
-            btn_cmd.DoClick = function()
+            local btnCommand = vgui.Create('MantleBtn', MoonContextMenu.menu.sp)
+            btnCommand:Dock(TOP)
+            btnCommand:DockMargin(0, 0, 0, 4)
+            btnCommand:SetTall(24)
+            btnCommand:SetTxt(cmd.name)
+            btnCommand.DoClick = function()
                 Mantle.func.sound()
 
                 cmd.func()
             end
-            btn_cmd.DoRightClick = function()
+            btnCommand.DoRightClick = function()
                 local DM = Mantle.ui.derma_menu()
                 DM:AddOption('Сбросить позицию', function()
                     MoonContextMenu.pos_save = nil
@@ -44,9 +43,9 @@ local function Create()
             end
 
             if cmd.icon then
-                btn_cmd.mat = Material('materials/mooncontextmenu/' .. cmd.icon .. '.png')
+                btnCommand.mat = Material('materials/mooncontextmenu/' .. cmd.icon .. '.png')
 
-                btn_cmd.PaintOver = function(self, w, h) 
+                btnCommand.PaintOver = function(self, w, h) 
                     surface.SetDrawColor(color_white)
                     surface.SetMaterial(self.mat)
                     surface.DrawTexturedRect(4, 4, 16, 16)
@@ -54,11 +53,11 @@ local function Create()
             end
         end
 
-        local panel_split = vgui.Create('DPanel', MoonContextMenu.menu.sp)
-        panel_split:Dock(TOP)
-        panel_split:DockMargin(0, 0, 0, 4)
-        panel_split:SetTall(8)
-        panel_split.Paint = function(_, w, h)
+        local panelSplit = vgui.Create('DPanel', MoonContextMenu.menu.sp)
+        panelSplit:Dock(TOP)
+        panelSplit:DockMargin(0, 0, 0, 4)
+        panelSplit:SetTall(8)
+        panelSplit.Paint = function(_, w, h)
             draw.RoundedBox(4, 0, 0, w, h, Mantle.color.panel_alpha[2])
         end
     end

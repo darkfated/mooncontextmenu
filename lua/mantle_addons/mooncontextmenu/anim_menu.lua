@@ -1,20 +1,20 @@
 local anims = {
-    {'dance', 'Обычный танец', 'dance.png'},
-    {'salute', 'Есть, сэр', 'salute.png'},
-    {'forward', 'Нам туда!', 'forward.png'},
-    {'cheer', 'Я здесь', 'cheer.png'},
-    {'disagree', 'Нет', 'no.png'},
-    {'bow', 'Поклон', 'bow.png'},
-    {'agree', 'Палец вверх', 'agree.png'},
-    {'muscle', 'Секси-танец', 'sexi.png'},
-    {'halt', 'Кулак', 'halt.png'},
-    {'robot', 'Робо-танец', 'robo.png'},
-    {'pers', 'Поза льва', 'lion.png'},
-    {'becon', 'Ко мне!', 'here.png'},
-    {'laugh', 'Смех', 'laugh.png'},
-    {'wave', 'Помахать', 'wave.png'},
-    {'give', 'Передать', 'give.png'},
-    {'group', 'Группировка', 'group.png'}
+    {ACT_GMOD_TAUNT_DANCE, 'Обычный танец', 'dance.png'},
+    {ACT_GMOD_TAUNT_SALUTE, 'Есть, сэр', 'salute.png'},
+    {ACT_SIGNAL_FORWARD, 'Нам туда!', 'forward.png'},
+    {ACT_GMOD_TAUNT_CHEER, 'Я здесь', 'cheer.png'},
+    {ACT_GMOD_GESTURE_DISAGREE, 'Нет', 'no.png'},
+    {ACT_GMOD_GESTURE_BOW, 'Поклон', 'bow.png'},
+    {ACT_GMOD_GESTURE_AGREE, 'Палец вверх', 'agree.png'},
+    {ACT_GMOD_TAUNT_MUSCLE, 'Секси-танец', 'sexi.png'},
+    {ACT_SIGNAL_HALT, 'Кулак', 'halt.png'},
+    {ACT_GMOD_TAUNT_ROBOT, 'Робо-танец', 'robo.png'},
+    {ACT_GMOD_TAUNT_PERSISTENCE, 'Поза льва', 'lion.png'},
+    {ACT_GMOD_GESTURE_BECON, 'Ко мне!', 'here.png'},
+    {ACT_GMOD_TAUNT_LAUGH, 'Смех', 'laugh.png'},
+    {ACT_GMOD_GESTURE_WAVE, 'Помахать', 'wave.png'},
+    {ACT_GMOD_GESTURE_ITEM_GIVE, 'Передать', 'give.png'},
+    {ACT_SIGNAL_GROUP, 'Группировка', 'group.png'}
 }
 
 local function Create()
@@ -47,7 +47,7 @@ local function Create()
         btn_anim.DoClick = function()
             Mantle.func.sound()
 
-            RunConsoleCommand('act2', anim_table[1])
+            RunConsoleCommand('_DarkRP_DoAnimation', anim_table[1])
         end
         btn_anim.DoRightClick = function()
             local DM = Mantle.ui.derma_menu()
